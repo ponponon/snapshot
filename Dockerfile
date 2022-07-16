@@ -1,10 +1,11 @@
 FROM python:3.10-buster
 
-RUN (echo "deb http://mirrors.aliyun.com/debian/ buster main non-free contrib" > /etc/apt/sources.list) 
-RUN (apt-get update) && (apt-get upgrade)
-RUN (apt-get install -y  lsb-release wget ttf-wqy-zenhei xfonts-intl-chinese wqy*) 
-# RUN (apt-get install -y  lsb-release)
-# RUN (apt-get install -y fonts-liberation libasound2 libatk-bridge2.0-0 libatk1.0-0 libatspi2.0-0 fonts-liberation)
+# 如果要阿里源，就用下面这个
+# RUN (echo "deb http://mirrors.aliyun.com/debian/ buster main non-free contrib" > /etc/apt/sources.list) 
+# 如果要清华源，就用下面这个
+RUN (echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free" > /etc/apt/sources.list) 
+RUN (apt update) && (apt upgrade -y)
+RUN (apt install -y  lsb-release wget ttf-wqy-zenhei xfonts-intl-chinese wqy*) 
 
 WORKDIR /code
 RUN mkdir /code/depends

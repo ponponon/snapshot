@@ -69,7 +69,7 @@ class BaseBrowser(TranscodingMixin):
 
 
 class ChromeBrowser(BaseBrowser):
-    def __init__(self, driver_path: Path, proxy: tuple[str, int] | None):
+    def __init__(self, driver_path: Path, proxy: tuple[str, int] | None = None):
         """
         代理的格式为 ip+port: ('149.28.24.224',60000)
         """

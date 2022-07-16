@@ -7,3 +7,4 @@ python-multipart  # Form data requires "python-multipart" to be installed.
 cryptography
 selenium
 Pillow
+minio

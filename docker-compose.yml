@@ -4,8 +4,6 @@ services:
     container_name: snapshot
     image: ponponon/snapshot
     restart: always
-    env_file:
-      - .env
     logging:
       driver: json-file
       options:
