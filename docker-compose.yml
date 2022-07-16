@@ -1,0 +1,14 @@
+version: "3"
+services:
+  snapshot:
+    container_name: snapshot
+    image: ponponon/snapshot
+    restart: always
+    env_file:
+      - .env
+    logging:
+      driver: json-file
+      options:
+        max-size: "30m"
+        max-file: "1"
+    command: python main.py

@@ -1,0 +1,84 @@
+AMQP_URI: amqp://${RABBIT_USER:guest}:${RABBIT_PASSWORD:guest}@${RABBIT_HOST:192.168.26.174}:${RABBIT_PORT:5672}/${RABBIT_VHOST:svddb}
+max_workers: 1
+# -------------------👇 下面是 server 相关的配置 -----------------
+prd:
+  mysql:
+    host: aliyun-in-svddb-db.ops.vobile.org
+    port: 3306
+    username: svddb
+    password: svddb123
+    database_name: svddb
+
+  rabbitmq:
+    host: 192.168.26.174
+    port: 5672
+    username: guest
+    password: guest
+    vhost: svddb
+
+  redis:
+    host: 192.168.26.174
+    port: 5672
+    username: guest
+    password: guest
+    db_index: 0
+
+dev: #线上测试，对应 dev
+  mysql:
+    host: google-cyberlocker-sql-proxy.ops.vobile.org # mycli -h google-cyberlocker-sql-proxy.ops.vobile.org -P 3308 -u vstool -pVstoolVobile123 -D linkCrawler
+    port: 3308
+    username: vstool
+    password: VstoolVobile123
+    database_name: linkCrawler
+
+  rabbitmq:
+    # host: rabbitmq-gcp-server-prod.video-tracker.svc.cluster.local
+    host: 10.128.1.132
+    # host: 34.68.224.14
+    port: 5672
+    username: admin
+    password: yourpassword
+    vhost: lsr_snapshot
+
+  redis:
+    host: 192.168.26.174
+    port: 5672
+    username: guest
+    password: guest
+    db_index: 0
+
+  gcs:
+    bucket_name: lsr
+
+  proxy_url: http://wiseproxy.ops.vobile.org/getProxy?site=other&partition=JP
+
+  size_threshold: 60 # 低于该值的截图，被认为是无效的，单位是 KB
+
+local: # 线下开发环境
+  mysql:
+    host: 192.168.26.174
+    port: 3306
+    username: root
+    password: 123456
+    database_name: linkCrawler
+
+  rabbitmq:
+    host: 192.168.26.174
+    port: 5672
+    username: guest
+    password: guest
+    vhost: lsr_snapshot
+
+  redis:
+    host: 192.168.26.174
+    port: 5672
+    username: guest
+    password: guest
+    db_index: 0
+
+  gcs:
+    bucket_name: lsr
+
+  proxy_url: http://wiseproxy.ops.vobile.org/getProxy?site=other&partition=JP
+
+  size_threshold: 10 # 低于该值的截图，被认为是无效的，单位是 KB

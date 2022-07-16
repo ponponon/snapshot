@@ -1,0 +1,9 @@
+pydantic 
+loguru 
+requests 
+pyyaml 
+python-dotenv 
+python-multipart  # Form data requires "python-multipart" to be installed.
+cryptography
+selenium
+Pillow
