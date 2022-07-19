@@ -42,6 +42,14 @@ class BaseBrowser(TranscodingMixin):
         截图
         """
         self.driver.maximize_window()
+
+        # [最完美方案！如何防止 Selenium 被检测出来](https://icode.best/i/52580136078670)
+        with open(BASE_DIR/'depends/stealth.min.js', 'r', encoding='utf-8') as f:
+            stealth_min_js = f.read()
+        self.driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+            "source": stealth_min_js
+        })
+
         self.driver.get(url)
 
         img: str = self.driver.get_screenshot_as_base64()
@@ -93,6 +101,10 @@ class ChromeBrowser(BaseBrowser):
             service=self.service,
             options=options
         )
+
+        self.driver.set_page_load_timeout(15)
+        self.driver.set_script_timeout(15)
+        self.driver.implicitly_wait(15)
 
         super().__init__(driver_path)
 
