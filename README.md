@@ -1,3 +1,5 @@
+Python 使用 selenium+chromedriver+chrome 实现网页截图
+
 具体参考这篇文章: [docker 打包 selenium+chromedriver+chrome 遇到的坑和解决方案](https://segmentfault.com/a/1190000042181376)
 
 # python 虚拟环境
@@ -34,14 +36,14 @@ pipenv install
 pipenv shell
 ```
 
-
-
 # Docker 相关
 
 ## 构建镜像
+
 ```
 make build
 ```
+
 > 如果没有 make 就安装一下
 
 ## 运行
