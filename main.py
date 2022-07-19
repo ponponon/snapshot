@@ -6,7 +6,8 @@ import signal
 
 # 加上这个可以避免出现 chromedriver 僵尸进程， 参考：https://www.jianshu.com/p/160a401eabb4
 # signal.SIGCLD 在 Linux 上存在
-signal.signal(signal.SIGCLD, signal.SIG_IGN)
+# signal.signal(signal.SIGCLD, signal.SIG_IGN)
+# 解决僵尸进程更合理的方式: https://github.com/krallin/tini
 
 driver_path: Path = BASE_DIR/'depends'/'chromedriver'
 

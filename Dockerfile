@@ -5,7 +5,10 @@ FROM python:3.10-buster
 # 如果要清华源，就用下面这个
 RUN (echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free" > /etc/apt/sources.list) 
 RUN (apt update) && (apt upgrade -y)
-RUN (apt install -y  lsb-release wget ttf-wqy-zenhei xfonts-intl-chinese wqy*) 
+# 中文字体
+RUN (apt install -y  lsb-release wget ttf-wqy-zenhei xfonts-intl-chinese wqy*)
+# 解决僵尸进程
+RUN (apt install -y  tini) 
 
 WORKDIR /code
 RUN mkdir /code/depends
@@ -21,3 +24,5 @@ COPY requirements-prd.txt /code/
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements-prd.txt
 COPY config.yaml /code/
 COPY . /code/
+
+ENTRYPOINT ["/usr/bin/tini", "--"]
